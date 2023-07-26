@@ -19,7 +19,7 @@ import com.devsuperior.demo.services.CityService;
 
 @RestController
 @RequestMapping("/cities")
-public class CityController {
+public class EventController {
 
 	@Autowired
 	private CityService service;
