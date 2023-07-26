@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.demo.dto.CityDTO;
 import com.devsuperior.demo.entities.City;
@@ -18,6 +20,7 @@ public class CityService {
 
 	@Autowired private CityRepository repository;
 	
+	@Transactional(readOnly = true)
 	public List<CityDTO> findAll() {
 		
 		final List<City> result = repository.findAll(Sort.by("name"));
@@ -25,6 +28,7 @@ public class CityService {
 		return result.stream().map(entity -> new CityDTO(entity)).toList();
 	}
 
+	@Transactional
 	public CityDTO insert(CityDTO dto) {
 
 		City entity = new City(null, dto.getName());
@@ -34,6 +38,7 @@ public class CityService {
 		return new CityDTO(entity);
 	}
 
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
 		
 		if (!repository.existsById(id)) {
