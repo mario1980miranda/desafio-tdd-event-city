@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.demo.dto.CityDTO;
 import com.devsuperior.demo.entities.City;
-import com.devsuperior.demo.repository.CityRepository;
+import com.devsuperior.demo.repositories.CityRepository;
 import com.devsuperior.demo.services.exceptions.DataBaseException;
 import com.devsuperior.demo.services.exceptions.ResourceNotFoundException;
 
